@@ -1,0 +1,52 @@
+.header {
+  background-color: rgb(190, 194, 174);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 30px -2px rgba(65, 71, 35, 0.7);
+}
+
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0.3rem;
+  display: flex;
+  
+  gap: var(--gap-lg);
+}
+
+/* Logo */
+.logoImg {
+  height: 5rem;
+  width: auto;
+}
+
+/* Nav links */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  flex: 1;
+  justify-content: end;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  font-size: 1.05rem;
+  color: var(--texto-suave);
+  padding: 0.20rem 0.8rem;
+  border-radius: 20px;
+  transition: color 0.2s, background-color 0.3s;
+}
+
+.nav a:hover {
+  color: var(--verde-musgo);
+  background-color: rgb(215, 218, 197);
+}
+
+.nav a.ativo {
+  color: rgb(236, 238, 229);
+  background-color: rgba(94, 109, 61, 0.918);
+  font-weight: 700;
+}
+

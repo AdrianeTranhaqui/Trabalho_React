@@ -1,0 +1,80 @@
+.cardapio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 3rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.titulo{
+  font-family: serif;
+  font-size: 3.7rem;
+  color: rgb(94, 104, 73);
+  text-align: center;
+  margin-bottom: 0.15rem;
+  letter-spacing: 0.11em;
+}
+
+.frase {
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+    color: rgb(133, 117, 94);
+    letter-spacing: 0.10rem;
+}
+
+.cardsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card1 {
+  background-color: rgba(204, 211, 159, 0.548);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.card2 {
+  background-color: rgba(206, 163, 135, 0.548);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.card3 {
+  background-color: rgba(190, 131, 82, 0.486);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  flex: 1;
+  min-width: 250px;
+  max-width: 350px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.txt1 {
+  font-family: serif;
+  font-size: 1.5rem;
+  color: rgb(122, 133, 100);
+  text-align: right;
+}
+.txt2 {
+  font-family: serif;
+  font-size: 1.5rem;
+  color: rgb(143, 118, 102);
+  text-align: right;
+}
+.txt3 {
+  font-family: serif;
+  font-size: 1.5rem;
+  color: rgb(141, 111, 87);
+  text-align: right;
+}
