@@ -55,3 +55,11 @@ img {
 ul {
   list-style: none;
 }
+
+html {
+  overflow-y: scroll;
+}
+
+html {
+  scroll-behavior: smooth;
+}

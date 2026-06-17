@@ -1,80 +1,364 @@
+.pagina {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 3rem;
+}
+
 .cardapio {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 3rem 1rem;
+  padding: 1rem 1rem;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.titulo{
+.gatoTitulo {
+  width: 80px;
+  height: auto;
+  margin-bottom: 0.5rem;
+}
+
+.tituloContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.folha {
+  width: 60px;
+  height: auto;
+}
+
+.titulo {
   font-family: serif;
-  font-size: 3.7rem;
-  color: rgb(94, 104, 73);
+  font-size: 3rem;
+  color: rgb(78, 87, 60);
   text-align: center;
   margin-bottom: 0.15rem;
-  letter-spacing: 0.11em;
+  
 }
 
 .frase {
-    font-family: 'Times New Roman', Times, serif;
-    font-style: italic;
-    color: rgb(133, 117, 94);
-    letter-spacing: 0.10rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-style: italic;
+  color: rgb(83, 75, 63);
+  letter-spacing: 0.10rem;
 }
 
 .cardsContainer {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .card1 {
-  background-color: rgba(204, 211, 159, 0.548);
+  background-color: rgba(164, 168, 134, 0.548);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   flex: 1;
   min-width: 250px;
   max-width: 350px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .card2 {
-  background-color: rgba(206, 163, 135, 0.548);
+  background-color: rgba(177, 143, 121, 0.548);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   flex: 1;
   min-width: 250px;
   max-width: 350px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
+
 .card3 {
-  background-color: rgba(190, 131, 82, 0.486);
+  background-color: rgba(206, 175, 116, 0.486);
   border-radius: var(--radius-md);
   padding: 1.5rem;
   flex: 1;
   min-width: 250px;
   max-width: 350px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card1:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card2:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card3:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.iconeCard {
+  width: auto;
+  height: 30px;
+  object-fit: contain;
+  opacity: 0.7;
+  margin-right: 0.5rem;
 }
 
 .txt1 {
   font-family: serif;
   font-size: 1.5rem;
-  color: rgb(122, 133, 100);
-  text-align: right;
+  color: rgb(94, 87, 80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .txt2 {
   font-family: serif;
   font-size: 1.5rem;
-  color: rgb(143, 118, 102);
-  text-align: right;
+  color: rgb(94, 87, 80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 .txt3 {
   font-family: serif;
   font-size: 1.5rem;
-  color: rgb(141, 111, 87);
-  text-align: right;
+  color: rgb(94, 87, 80);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divisor {
+  border: none;
+  border-top: 1px solid;
+  color: rgb(202, 197, 183);
+  width: 100%;
+  margin: 2rem auto 1rem auto;
+}
+
+.secaoHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.secaoTitulo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.iconeSecao {
+  width: auto;
+  height: 30px;
+  object-fit: contain;
+  display: inline;
+  margin-right: 0.8rem;
+  opacity: 0.6;
+}
+
+.secaoNome {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1.3rem;
+  color: rgba(105, 116, 83, 0.863);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+}
+
+.secaoDescricao {
+  font-size: 1rem;
+  color: rgb(114, 107, 98);
+}
+
+.listaItens {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.cardItem {
+  background-color: var(--branco);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  flex-shrink: 0;
+  opacity: 0.9;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.cardItem:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.cardImg {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+
+.cardInfo {
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.cardNome {
+  font-family: var(--fonte-titulo);
+  font-size: 0.95rem;
+  color: var(--texto);
+}
+
+.cardDescricao {
+  font-size: 0.75rem;
+  color: var(--texto-suave);
+  line-height: 1.4;
+}
+
+.cardPreco {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--marrom);
+  margin-top: 0.25rem;
+}
+
+.cardTag {
+  font-size: 0.72rem;
+  color: var(--verde-musgo);
+  border: 1px solid var(--verde-claro);
+  border-radius: 20px;
+  padding: 0.15rem 0.5rem;
+  width: fit-content;
+  margin-top: 0.25rem;
+}
+
+.gatinhoFinal {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+.gatinhoImg {
+  width: 150px;
+  height: auto;
+}
+
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background-color: var(--creme);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 360px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalImg {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.modalInfo {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.modalNome {
+  font-family: var(--fonte-titulo);
+  font-size: 1.4rem;
+  color: var(--texto);
+}
+
+.modalPreco {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--marrom);
+}
+
+.modalPergunta {
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  margin-top: 0.25rem;
+}
+
+.modalBotoes {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btnCancelar {
+  flex: 1;
+  padding: 0.6rem;
+  border: 1.5px solid var(--creme-escuro);
+  border-radius: var(--radius-md);
+  background: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--texto-suave);
+  transition: background-color 0.2s;
+}
+
+.btnCancelar:hover {
+  background-color: var(--creme-escuro);
+}
+
+.btnConfirmar {
+  flex: 1;
+  padding: 0.6rem;
+  border: none;
+  border-radius: var(--radius-md);
+  background-color: var(--verde-musgo);
+  color: var(--branco);
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: background-color 0.2s;
+}
+
+.btnConfirmar:hover {
+  background-color: var(--verde-claro);
 }
