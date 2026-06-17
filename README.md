@@ -1,9 +1,9 @@
 # Book & Brew
 
 <p align="center">
-    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/cafe.png" alt="café" height="5px" />
-    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/gatinho3.png" alt="gato" height="5px" />
-    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/livro fechado.png" alt="livro" height="5px" />
+    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/cafe.png" alt="café" height="35px" />
+    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/gatinho3.png" alt="gato" height="35px" />
+    <img src="https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/icons/livro fechado.png" alt="livro" height="35px" />
 </p>
 
 Site fictício de uma cafeteria/livraria pet-friendly, desenvolvido como trabalho em grupo para a disciplina de **Desenvolvimento de Aplicações Multiplataformas**.
