@@ -32,6 +32,11 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  cursor: url('/gato.png') 16 14, auto !important;
+}
+
+html, body {
+  cursor: url('/gato.png') 16 14, auto !important;
 }
 
 body {
