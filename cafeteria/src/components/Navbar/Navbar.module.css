@@ -23,12 +23,22 @@
 
 /* Nav links */
 .nav {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 4rem;
   flex: 1;
   justify-content: end;
   flex-wrap: wrap;
+
+  /*Acrescentado para o menu */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: rgb(190, 194, 174);
+  flex-direction: column;
+  padding: 1rem;
+  gap: 1rem;
 }
 
 .nav a {
@@ -50,3 +60,51 @@
   font-weight: 700;
 }
 
+/*Menu*/
+.menuToggle {
+    display: flex;
+    flex-direction: column;
+    margin: 1.7rem;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.menuToggle .bar {
+    width: 25px;
+    height: 3px;
+    background-color: rgba(94, 109, 61, 0.918);
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+}
+
+.menuToggle.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menuToggle.open .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menuToggle.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.navAberto {
+  display: flex;
+}
+
+@media (min-width: 768px) {
+
+  .menuToggle {
+    display: none;
+  }
+  .nav {
+    display: flex;
+    position: static;
+    flex-direction: row;
+    padding: 0;
+  }
+
+}
