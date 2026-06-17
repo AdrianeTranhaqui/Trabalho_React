@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600&display=swap');
+ 
+:root {
+  --verde-salvia: #C7D0C2;
+  --verde-musgo: #6F816A;
+  --verde-musgo-escuro: #57664f;
+  --bege-latte: #D9B686;
+  --creme-papel: #F3F0E8;
+  --caramelo-cafe: #A8774C;
+  --bege-honey: #D8C39D;
+  --texto-escuro: #3f3a33;
+}
+ 
+/* ===== Cabeçalho da página ===== */
+.titulo {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.75rem;
+  color: var(--caramelo-cafe);
+  text-align: center;
+  margin: 2.5rem 0 0.25rem;
+}
+ 
+.subtitulo {
+  font-family: 'Poppins', sans-serif;
+  text-align: center;
+  color: var(--verde-musgo-escuro);
+  margin-bottom: 2.5rem;
+  font-size: 1.05rem;
+}
+ 
+/* ===== Grids de layout ===== */
+.gridPrincipal {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr 1fr;
+  align-items: start;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 0 1.5rem;
+}
+ 
+.gridSecundaria {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto 3rem;
+  padding: 0 1.5rem;
+}
+ 
+@media (max-width: 900px) {
+  .gridPrincipal,
+  .gridSecundaria {
+    grid-template-columns: 1fr;
+  }
+}
+ 
+/* ===== Cards base ===== */
+.categoria,
+.livrodomes,
+.recomendados,
+.quiz,
+.frase {
+  background-color: var(--creme-papel);
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.2s ease;
+}
+ 
+.categoria:hover,
+.livrodomes:hover,
+.recomendados:hover,
+.quiz:hover,
+.frase:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+ 
+.categoria h3,
+.livrodomes h3,
+.recomendados h3,
+.quiz h3,
+.frase h3 {
+  font-family: 'Playfair Display', serif;
+  color: var(--caramelo-cafe);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+ 
+/* ===== Categorias (botões) ===== */
+.categoria {
+  display: flex;
+  flex-direction: column;
+}
+ 
+.botao {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--verde-musgo);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.65rem 1.25rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+ 
+.botao:hover {
+  background-color: var(--verde-musgo-escuro);
+  transform: translateY(-1px);
+}
+ 
+.botao:last-child {
+  margin-bottom: 0;
+}
+ 
+/* ===== Livro do mês (card em destaque) ===== */
+.livrodomes {
+  background-color: #faf7f0;
+  border: 1px solid rgba(168, 119, 76, 0.18);
+  box-shadow: 0 8px 22px rgba(168, 119, 76, 0.14);
+}
+ 
+.livrodomes:hover {
+  box-shadow: 0 10px 26px rgba(168, 119, 76, 0.2);
+}
+ 
+.bookOfMonth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+ 
+.bookOfMonth > div {
+  width: 100%;
+}
+ 
+.bookOfMonth img {
+  width: 150px;
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  margin-bottom: 1.25rem;
+}
+ 
+.bookOfMonth h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--texto-escuro);
+  margin-bottom: 0.35rem;
+}
+ 
+.bookOfMonth p {
+  font-family: 'Poppins', sans-serif;
+  color: var(--verde-musgo-escuro);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+ 
+.bookOfMonth p:last-of-type {
+  color: var(--texto-escuro);
+  font-size: 0.88rem;
+  line-height: 1.6;
+  text-align: left;
+}
+ 
+/* ===== Grade de livros (categorias e recomendados) ===== */
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 0.85rem;
+}
+ 
+.bookGrid > div {
+  cursor: pointer;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 0.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+ 
+.bookGrid > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+ 
+.bookGrid img {
+  width: 100%;
+  border-radius: 6px;
+}
+ 
+.bookGrid p {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.8rem;
+  color: var(--texto-escuro);
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  line-height: 1.2;
+}
+ 
+/* ===== Frase ===== */
+.frase {
+  background-color: var(--verde-salvia);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+ 
+.frase p {
+  font-family: 'Poppins', sans-serif;
+  font-style: italic;
+  color: var(--texto-escuro);
+  line-height: 1.6;
+  border-left: 3px solid var(--caramelo-cafe);
+  padding-left: 1rem;
+  margin: 0;
+}
+ 
+/* ===== Quiz ===== */
+.quiz {
+  background-color: var(--bege-latte);
+  text-align: center;
+}
+ 
+.quiz p {
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto-escuro);
+  margin-bottom: 1rem;
+}
+ 
+.quiz .botao {
+  background-color: var(--caramelo-cafe);
+  display: inline-block;
+}
+ 
+.quiz .botao:hover {
+  background-color: #8d6038;
+}
+ 
+/* ===== Página de resultado de categoria ===== */
+.sectionCategoria {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1.5rem 3rem;
+}
+ 
+.sectionCategoria h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--caramelo-cafe);
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+ 
+.sectionCategoria > p {
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+  color: var(--verde-musgo-escuro);
+}
+ 
+/* ===== Modal do livro ===== */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(63, 58, 51, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+ 
+.modalContent {
+  background-color: var(--creme-papel);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+ 
+.modalContent img {
+  width: 140px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-bottom: 1rem;
+}
+ 
+.modalContent h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--caramelo-cafe);
+  margin-bottom: 0.5rem;
+}
+ 
+.modalContent p {
+  font-family: 'Poppins', sans-serif;
+  color: var(--texto-escuro);
+  font-size: 0.92rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.5;
+}
+ 
+.modalContent button {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--verde-musgo);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+ 
+.modalContent button:hover {
+  background-color: var(--verde-musgo-escuro);
+}
