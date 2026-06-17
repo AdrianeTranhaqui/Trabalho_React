@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/*Banner*/
+.banner{
+    min-height: 30rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: stretch;
+}
+.secao1{
+    background-color: #F1EDDE;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 0;
+}
+.titulo{
+    font-size: 2.8rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding-left: 3rem;
+    padding-top: 2rem;
+}
+.subtitulo{
+    font-size: large;
+    font-family: 'Lato', sans-serif;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 2rem;
+}
+.botoes{
+    display: flex;
+    flex-direction: row;
+    width: 20rem;
+    height: 2.5rem;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+.buttonCardapio{
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #5C7A5A;
+    border-radius: 10px;
+    color: #F5F0E8;
+    font-weight: 700;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.2s ease;
+}
+.buttonCardapio:hover {
+    transform: translateY(-2px);
+}
+.buttonBiblioteca{
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: 1px solid #5C7A5A;
+    background-color: #F5F0E8;
+    border-radius: 10px;
+    color: #5C7A5A;
+    font-weight: 700;
+    cursor: pointer;
+    transform: translateY(0);
+    transition: transform 0.2s ease;
+}
+.buttonBiblioteca:hover {
+    transform: translateY(-2px);
+}
+.image{
+    width: 60%;
+    position: relative;
+}
+.image img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.image::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background: linear-gradient(to right, #F1EDDE, transparent);
+    z-index: 2;
+}
+
+/*Pages*/
+.pages{
+    min-height: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 0;
+}
+.titulo2{
+    font-size: x-large;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding-right: 4rem;
+}
+.cards{
+    display: flex;
+    flex-direction: row;
+    max-width: 70rem;
+    align-items: flex-start;
+    gap: 2rem;
+    margin: 0 auto;
+}
+.card{
+    width: 50%;
+    height: auto;
+    min-height: 22rem;
+    background-color: #EDE5D0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 2rem 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    
+}
+.card:hover {
+    background-color: #e4dac1;
+}
+.cardAberto {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background-color: #e4dac1;
+}
+.card img{
+    width: 6.5rem;
+    height: 6.5rem;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+.card h3{
+    padding-left: 2rem;
+    padding-right: 2rem;
+}
+
+/*Destaques*/
+.destaques{
+    min-height: 15rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.titulo3{
+    font-size: x-large;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    padding-right: 4rem;
+}
+.folhetos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 3rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+.folheto{
+    width: 18rem;
+    height: 6rem;
+    background-color: #EDE5D0;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    border-radius: 10px;
+}
+.mes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.mes h2{
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+}
+.folheto img{
+    width: 5rem;
+    height: 5rem;
+    margin-left: 1rem;
+}
+
+/*Cometários*/
+.comentarios {
+    min-height: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #F1EDDE; 
+    padding-bottom: 2rem;
+}
+.cardComentario {
+    background-color: #EDE5D0;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 32rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+}
+.avatar {
+    font-size: 2.5rem;
+    background-color: #F5F0E8;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+}
+.comentarioConteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+.textoComentario {
+    font-family: 'Lato', sans-serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: #444;
+    line-height: 1.5;
+}
+.nomeCliente {
+    font-family: 'Playfair Display', serif;
+    color: #5C7A5A;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+.btnProximo {
+    background: none;
+    border: none;
+    color: #5C7A5A;
+    font-family: 'Segoe UI', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.5rem;
+}
+.btnProximo:hover {
+    transform: translateX(3px); 
+}
