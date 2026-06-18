@@ -48,13 +48,13 @@ src/
 - **Roteamento** entre as páginas com `react-router-dom`.
 - **Menu responsivo**: navbar com versão mobile (menu hambúrguer) que abre/fecha e fecha automaticamente ao clicar em um link.
 - **Renderização condicional**: classes de menu ativo (`NavLink`), abertura/fechamento do menu mobile, exibição de mensagens de erro no formulário e estado de carregamento do botão de envio.
+- **Requisição GET** para uma API pública do Google, listando livros na página Biblioteca do Gato.
 - **Formulário de avaliação** (página Nosso Refúgio):
   - Validação de campos (nome com mínimo de 3 caracteres, e-mail com `@`, comentário com mínimo de 10 caracteres).
   - Envio dos dados via **requisição POST** para uma **MockAPI**, simulando a persistência da avaliação.
 
 ## Em desenvolvimento
 
-- Requisição **GET** para listar/exibir dados vindos da API.
 - Uso de **Context API** para compartilhar informações entre componentes (ex.: itens selecionados/carrinho).
 
 ## 🚀 Como Executar o Projeto
@@ -82,10 +82,10 @@ src/
 | Nome | Responsabilidade | GitHub | LinkedIn |
 |---|---|---|---|
 | **Adriane** | Iniciação do projeto, criação dos componentes gerais, página cardápio | [GitHub](https://github.com/AdrianeTranhaqui) | [LinkedIn](https://www.linkedin.com/in/adriane-tranhaqui-356806353/) |
-| **Ana Luísa** | Página home | [GitHub](https://github.com/devAnaLuX) | [LinkedIn](https://www.linkedin.com/in/ana-luisa-cunha-reis-8baa563a3/) |
+| **Ana Luísa** | Página home, requisição GET com MockAPI | [GitHub](https://github.com/devAnaLuX) | [LinkedIn](https://www.linkedin.com/in/ana-luisa-cunha-reis-8baa563a3/) |
 | **Melissa** | Página itens selecionados | [GitHub](https://github.com/melissa-lima21) | [LinkedIn](https://www.linkedin.com/in/melissa-lima-0628a324b/) |
-| **Raquel** | Página biblioteca do gato  | [GitHub](https://github.com/Raquel-Beep) | [LinkedIn](https://www.linkedin.com/in/raquel-taveira-02668423b/) |
-| **Vitória** | Página nosso refugio, conexão com MockAPI | [GitHub](https://github.com/vitoriazanchet) | [LinkedIn](https://www.linkedin.com/in/vitoria-zanchet) |
+| **Raquel** | Página biblioteca do gato, requisição GET com API pública  | [GitHub](https://github.com/Raquel-Beep) | [LinkedIn](https://www.linkedin.com/in/raquel-taveira-02668423b/) |
+| **Vitória** | Página nosso refugio, requisição POST com MockAPI | [GitHub](https://github.com/vitoriazanchet) | [LinkedIn](https://www.linkedin.com/in/vitoria-zanchet) |
 
 ---
 
