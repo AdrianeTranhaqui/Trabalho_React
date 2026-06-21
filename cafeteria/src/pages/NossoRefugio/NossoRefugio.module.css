@@ -45,7 +45,7 @@
     height: 20rem;
 }
 
-.imgLeft {
+.fachada {
     object-fit: cover;
     width: 100%;
     height: 20rem;
@@ -54,29 +54,13 @@
     -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
 }
 
-.imgRight {
+.imgAvaliacao {
     object-fit: cover;
     width: 40%;
     height: 20rem;
     border-radius: 18px;
     mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
     -webkit-mask-image: linear-gradient(to right, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
-}
-
-.titulo {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-}
-
-.titulo h1, .titulo h2 {
-    font-family: var(--fonte-titulo);
-}
-
-.titulo img {
-    object-fit: contain;
-    width: 1.2rem;
-    height: auto;
 }
 
 .text {
@@ -88,41 +72,6 @@
 
 .text p {
     margin-top: 10px;
-}
-
-.text2 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
-    width: 12.7rem;
-    font-family: var(--fonte-corpo);
-    color: var(--creme-escuro);
-}
-
-.card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    background-color: var(--creme-escuro);
-    border: 1px solid var(--marrom-claro);
-    border-radius: 18px;
-    width: 19rem;
-    height: 10rem;
-}
-
-.card img, .card2 img {
-    object-fit: contain;
-    width: 3rem;
-    margin-left: 1rem;
-}
-
-.card2 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    width: 19rem;
-    height: 5rem;
 }
 
 .metricas {
@@ -194,7 +143,7 @@
         justify-content: center;
         height: 28.7rem;
     }
-    .imgLeft {
+    .fachada {
         width: 100%;
         height: 10rem;
         border-top-left-radius: 0;
@@ -205,7 +154,7 @@
         -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 100%);
     }
 
-    .imgRight {
+    .imgAvaliacao {
         width: 100%;
         height: 7.2rem;
         border-top-left-radius: 18px;
@@ -220,10 +169,6 @@
         width: 100%;
         height: 22rem;
         margin: 0.5rem;
-    }
-
-    .titulo h2 {
-        font-size: 20px;
     }
 
     .avaliacao h3 {
