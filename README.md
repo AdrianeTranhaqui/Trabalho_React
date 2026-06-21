@@ -52,10 +52,8 @@ src/
 - **Formulário de avaliação** (página Nosso Refúgio):
   - Validação de campos (nome com mínimo de 3 caracteres, e-mail com `@`, comentário com mínimo de 10 caracteres).
   - Envio dos dados via **requisição POST** para uma **MockAPI**, simulando a persistência da avaliação.
+- Uso de **Context API** para compartilhar informações entre componentes.
 
-## Em desenvolvimento
-
-- Uso de **Context API** para compartilhar informações entre componentes (ex.: itens selecionados/carrinho).
 
 ## 🚀 Como Executar o Projeto
 
@@ -81,9 +79,9 @@ src/
 
 | Nome | Responsabilidade | GitHub | LinkedIn |
 |---|---|---|---|
-| **Adriane** | Iniciação do projeto, criação dos componentes gerais, página cardápio | [GitHub](https://github.com/AdrianeTranhaqui) | [LinkedIn](https://www.linkedin.com/in/adriane-tranhaqui-356806353/) |
+| **Adriane** | Inicialização do projeto, criação dos componentes gerais, página cardápio | [GitHub](https://github.com/AdrianeTranhaqui) | [LinkedIn](https://www.linkedin.com/in/adriane-tranhaqui-356806353/) |
 | **Ana Luísa** | Página home, requisição GET com MockAPI | [GitHub](https://github.com/devAnaLuX) | [LinkedIn](https://www.linkedin.com/in/ana-luisa-cunha-reis-8baa563a3/) |
-| **Melissa** | Página itens selecionados | [GitHub](https://github.com/melissa-lima21) | [LinkedIn](https://www.linkedin.com/in/melissa-lima-0628a324b/) |
+| **Melissa** | Página itens selecionados, uso de Context API | [GitHub](https://github.com/melissa-lima21) | [LinkedIn](https://www.linkedin.com/in/melissa-lima-0628a324b/) |
 | **Raquel** | Página biblioteca do gato, requisição GET com API pública  | [GitHub](https://github.com/Raquel-Beep) | [LinkedIn](https://www.linkedin.com/in/raquel-taveira-02668423b/) |
 | **Vitória** | Página nosso refugio, requisição POST com MockAPI | [GitHub](https://github.com/vitoriazanchet) | [LinkedIn](https://www.linkedin.com/in/vitoria-zanchet) |
 
