@@ -1,0 +1,21 @@
+.titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.titulo h1, .titulo h2 {
+    font-family: var(--fonte-titulo);
+}
+
+.titulo img {
+    object-fit: contain;
+    width: 1.2rem;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .titulo h2 {
+        font-size: 20px;
+    }
+}
