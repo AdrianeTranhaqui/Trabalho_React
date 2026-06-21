@@ -1,4 +1,6 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useContext} from 'react';
+import { SelecaoContext } from '../../context/SelecaoContext';
+
 import styles from './Cardapio.module.css';
 import iconeSalgados from '../../assets/icons/pincel.icon.png';
 import iconeDoces from '../../assets/icons/livro.icon.png';
@@ -31,6 +33,8 @@ import icedTea from '../../assets/images/cardapio/bebidas/iced-tea-colorido.png'
 
 export default function Cardapio() {
 
+  const { adicionarItem } = useContext(SelecaoContext); //*
+
   const refSalgados = useRef(null);
   const refDoces = useRef(null);
   const refBebidas = useRef(null);
@@ -56,9 +60,7 @@ export default function Cardapio() {
   }
 
   function confirmarSelecao() {
-    const itensSalvos = JSON.parse(localStorage.getItem('itensSelecionados') || '[]');
-    itensSalvos.push(itemSelecionado);
-    localStorage.setItem('itensSelecionados', JSON.stringify(itensSalvos));
+    adicionarItem(itemSelecionado); //*
     fecharModal();
     alert(`"${itemSelecionado.nome}" adicionado aos seus itens! 🐾`);
   }
