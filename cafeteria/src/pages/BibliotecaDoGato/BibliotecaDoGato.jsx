@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react'; 
+import { SelecaoContext } from '../../context/SelecaoContext.jsx';
+
 import { useNavigate } from 'react-router-dom';
 import CategorySection from '../../components/Biblioteca/CategorySection';
 import BookOfTheMonth from '../../components/Biblioteca/BookOfTheMonth';
@@ -6,7 +8,7 @@ import Quiz from '../../components/Biblioteca/Quiz';
 import { CATEGORIES } from '../../constants/categories';
 import styles from './BibliotecaDoGato.module.css';
 
-function LivroDetalhe({ book, onClose }) {
+function LivroDetalhe({ book, onClose, onAdicionar}) {
   if (!book) return null;
   return (
     <div className={styles.livroDetalhe}>
@@ -26,6 +28,14 @@ function LivroDetalhe({ book, onClose }) {
       {book.description && (
         <p className={styles.sinopse}>{book.description}</p>
       )}
+
+      <div className={styles.botoesContainer}> 
+        <button
+        className={styles.botaoAdicionar}
+        onClick={() => onAdicionar(book)}
+        > 📖 Ler na mesa </button>
+
+      </div>
       <button className={styles.botaoFechar} onClick={onClose}>
         Fechar
       </button>
@@ -40,11 +50,20 @@ export default function BibliotecaDoGato() {
   const [generoRecomendado, setGeneroRecomendado] = useState('romance');
   const navigate = useNavigate();
 
+  const { adicionarItem } = useContext(SelecaoContext); //*
+
   const handleGeneroDefinido = (genero) => {
     setGeneroRecomendado(genero.toLowerCase());
     setLivroRecomendado(null);
     setMostrarQuiz(false);
   };
+
+  
+  const handleAdicionarLivro = (book) => { 
+    adicionarItem(book);
+    alert(`"${book.title}" foi adicionado aos seus itens selecionados! 🐾📚`);
+  };
+
 
   return (
     <>
@@ -77,6 +96,7 @@ export default function BibliotecaDoGato() {
           <LivroDetalhe
             book={livroMes}
             onClose={() => setLivroMes(null)}
+            onAdicionar={handleAdicionarLivro}
           />
         </div>
 

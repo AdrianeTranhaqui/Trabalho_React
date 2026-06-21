@@ -392,6 +392,21 @@
   color: #fff;
 }
 
+.botaoAdicionar {
+  background-color: var(--verde-musgo);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.botaoAdicionar:hover {
+  background-color: var(--verde-musgo-escuro);
+}
+
 /* ===== Tag de gênero nos recomendados ===== */
 .generoTag {
   font-family: 'Poppins', sans-serif;
