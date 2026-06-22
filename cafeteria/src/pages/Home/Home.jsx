@@ -77,7 +77,7 @@ export default function Home() {
             </button>
             <button 
             className={styles.buttonBiblioteca}
-            onClick={() => navigate('/BibliotecaDoGato')}>
+            onClick={() => navigate('/Biblioteca-Do-Gato')}>
               Biblioteca do Gato
             </button>
           </div>

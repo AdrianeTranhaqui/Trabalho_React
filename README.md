@@ -10,11 +10,13 @@ Site fictício de uma cafeteria/livraria pet-friendly, desenvolvido como trabalh
 
 > "Mais que um café, um lugar para pertencer."
 
-## Sobre o projeto
+## Sobre o Projeto ✨
 
 O Book & Brew é um espaço (fictício) que une cafeteria, livraria e um cantinho para gatos. O site apresenta cardápio, catálogo de livros, a história do lugar, seus valores, fotos do ambiente, avaliação do atendimento, e uma seção de itens selecionados.
 
-## Tecnologias utilizadas
+![Video do site](https://github.com/AdrianeTranhaqui/Trabalho_React/blob/master/cafeteria/src/assets/Book&Brew.gif)
+
+## ⚛ Tecnologias Utilizadas
 
 - [React](https://react.dev/)
 - [Vite](https://vite.dev/)
@@ -22,7 +24,7 @@ O Book & Brew é um espaço (fictício) que une cafeteria, livraria e um cantinh
 - [MockAPI](https://mockapi.io/) — API REST fake para simular persistência de dados
 - CSS Modules — estilização isolada por componente
 
-## Estrutura do projeto
+## 🗂️ Estrutura do Projeto
 
 ```
 src/
@@ -42,7 +44,7 @@ src/
 └── main.jsx               # ponto de entrada da aplicação
 ```
 
-## Funcionalidades já implementadas
+## 🎯 Funcionalidades Implementadas
 
 - **Componentização**: layout dividido em `Navbar`, `Footer`, `Base` (wrapper de página) e páginas individuais.
 - **Roteamento** entre as páginas com `react-router-dom`.
@@ -73,7 +75,7 @@ src/
     ```bash
     npm run dev
     ```
-5.  Abra o navegador no endereço indicado pelo terminal (geralmente `http://localhost:5173`).
+5.  **Abra o navegador no endereço indicado pelo terminal** (geralmente `http://localhost:5173`).
 
 ## 👩‍💻 Integrantes
 
