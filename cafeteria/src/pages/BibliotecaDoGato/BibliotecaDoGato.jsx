@@ -10,23 +10,24 @@ import styles from './BibliotecaDoGato.module.css';
 
 function LivroDetalhe({ book, onClose, onAdicionar}) {
   if (!book) return null;
+  const info = book.volumeInfo;
   return (
     <div className={styles.livroDetalhe}>
-      {book.thumbnail && (
-        <img src={book.thumbnail} alt={book.title} />
+      {info.imageLinks?.thumbnail && (
+        <img src={info.imageLinks.thumbnail} alt={info.title} />
       )}
-      <h4>{book.title}</h4>
-      {book.authors && (
-        <p className={styles.autor}>{book.authors.join(', ')}</p>
+      <h4>{info.title}</h4>
+      {info.authors && (
+        <p className={styles.autor}>{info.authors.join(', ')}</p>
       )}
-      {book.averageRating && (
+      {info.averageRating && (
         <p className={styles.avaliacao}>
-          ⭐ {book.averageRating} / 5
-          {book.ratingsCount && ` (${book.ratingsCount} avaliações)`}
+          ⭐ {info.averageRating} / 5
+          {info.ratingsCount && ` (${info.ratingsCount} avaliações)`}
         </p>
       )}
-      {book.description && (
-        <p className={styles.sinopse}>{book.description}</p>
+      {info.description && (
+        <p className={styles.sinopse}>{info.description}</p>
       )}
 
       <div className={styles.botoesContainer}> 
@@ -60,8 +61,15 @@ export default function BibliotecaDoGato() {
 
   
   const handleAdicionarLivro = (book) => { 
-    adicionarItem(book);
-    alert(`"${book.title}" foi adicionado aos seus itens selecionados! 🐾📚`);
+    const info = book.volumeInfo;
+    const livroParaSelecao = {
+      id: book.id,
+      title: info.title,
+      authors: info.authors,
+      thumbnail: info.imageLinks?.thumbnail,
+    };
+    adicionarItem(livroParaSelecao);
+    alert(`"${info.title}" foi adicionado aos seus itens selecionados! 🐾📚`);
   };
 
 
@@ -118,6 +126,7 @@ export default function BibliotecaDoGato() {
           <LivroDetalhe
             book={livroRecomendado}
             onClose={() => setLivroRecomendado(null)}
+            onAdicionar={handleAdicionarLivro}
           />
           <button type="button" className={styles.botao}>
             Ver todos os livros
