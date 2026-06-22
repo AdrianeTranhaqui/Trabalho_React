@@ -108,9 +108,7 @@ export default function Home() {
                 </ul>
               </div>
             )}
-            <span className={styles.cliqueAviso}>
-              {cafeEstendido ? '' : ''}
-            </span>
+            
           </div>
 
           <div 
