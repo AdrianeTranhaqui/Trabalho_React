@@ -128,9 +128,6 @@ export default function Home() {
                 </ul>
               </div>
             )}
-            <span className={styles.cliqueAviso}>
-              {sobremesaEstendido ? '' : ''}
-            </span>
           </div>
 
           <div 
@@ -150,9 +147,6 @@ export default function Home() {
                 </ul>
               </div>
             )}
-            <span className={styles.cliqueAviso}>
-              {salgadoEstendido ? '' : ''}
-            </span>
           </div>
 
           <div 
@@ -172,9 +166,6 @@ export default function Home() {
                 </ul>
               </div>
             )}
-            <span className={styles.cliqueAviso}>
-              {livrosEstendido ? '' : ''}
-            </span>
           </div>
         </div>
       </section>
@@ -239,7 +230,7 @@ export default function Home() {
             </div>
 
             <button className={styles.btnProximo} onClick={proximaAvaliacao}>
-              Próximo depoimento →
+              Próximo avaliação →
             </button>
           </div>
         )}
