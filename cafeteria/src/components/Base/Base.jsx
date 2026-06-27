@@ -1,5 +1,6 @@
 import Navbar from '../Navbar/Navbar';
 import Footer from '../Footer/Footer';
+import Chat from '../Chat/Chat';
 import styles from './Base.module.css';
 
 export default function Base({ children }) {
@@ -10,6 +11,7 @@ export default function Base({ children }) {
         {children}
       </main>
       <Footer />
+      <Chat />
     </div>
   );
 }

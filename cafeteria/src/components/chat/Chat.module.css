@@ -1,0 +1,20 @@
+.mensagemUsuario {
+  background-color: var(--verde-musgo);
+  color: var(--branco);
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-md) 0 var(--radius-md) var(--radius-md);
+  font-size: 0.85rem;
+  max-width: 85%;
+  align-self: flex-end;
+  line-height: 1.4;
+}
+
+.chatMensagens {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+}
