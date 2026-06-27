@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react'; 
+import { SelecaoContext } from '../../context/SelecaoContext.jsx';
+
 import { useNavigate } from 'react-router-dom';
 import CategorySection from '../../components/Biblioteca/CategorySection';
 import BookOfTheMonth from '../../components/Biblioteca/BookOfTheMonth';
@@ -6,26 +8,35 @@ import Quiz from '../../components/Biblioteca/Quiz';
 import { CATEGORIES } from '../../constants/categories';
 import styles from './BibliotecaDoGato.module.css';
 
-function LivroDetalhe({ book, onClose }) {
+function LivroDetalhe({ book, onClose, onAdicionar}) {
   if (!book) return null;
+  const info = book.volumeInfo;
   return (
     <div className={styles.livroDetalhe}>
-      {book.thumbnail && (
-        <img src={book.thumbnail} alt={book.title} />
+      {info.imageLinks?.thumbnail && (
+        <img src={info.imageLinks.thumbnail} alt={info.title} />
       )}
-      <h4>{book.title}</h4>
-      {book.authors && (
-        <p className={styles.autor}>{book.authors.join(', ')}</p>
+      <h4>{info.title}</h4>
+      {info.authors && (
+        <p className={styles.autor}>{info.authors.join(', ')}</p>
       )}
-      {book.averageRating && (
+      {info.averageRating && (
         <p className={styles.avaliacao}>
-          ⭐ {book.averageRating} / 5
-          {book.ratingsCount && ` (${book.ratingsCount} avaliações)`}
+          ⭐ {info.averageRating} / 5
+          {info.ratingsCount && ` (${info.ratingsCount} avaliações)`}
         </p>
       )}
-      {book.description && (
-        <p className={styles.sinopse}>{book.description}</p>
+      {info.description && (
+        <p className={styles.sinopse}>{info.description}</p>
       )}
+
+      <div className={styles.botoesContainer}> 
+        <button
+        className={styles.botaoAdicionar}
+        onClick={() => onAdicionar(book)}
+        > 📖 Ler na mesa </button>
+
+      </div>
       <button className={styles.botaoFechar} onClick={onClose}>
         Fechar
       </button>
@@ -40,11 +51,27 @@ export default function BibliotecaDoGato() {
   const [generoRecomendado, setGeneroRecomendado] = useState('romance');
   const navigate = useNavigate();
 
+  const { adicionarItem } = useContext(SelecaoContext); //*
+
   const handleGeneroDefinido = (genero) => {
     setGeneroRecomendado(genero.toLowerCase());
     setLivroRecomendado(null);
     setMostrarQuiz(false);
   };
+
+  
+  const handleAdicionarLivro = (book) => { 
+    const info = book.volumeInfo;
+    const livroParaSelecao = {
+      id: book.id,
+      title: info.title,
+      authors: info.authors,
+      thumbnail: info.imageLinks?.thumbnail,
+    };
+    adicionarItem(livroParaSelecao);
+    alert(`"${info.title}" foi adicionado aos seus itens selecionados! 🐾📚`);
+  };
+
 
   return (
     <>
@@ -77,6 +104,7 @@ export default function BibliotecaDoGato() {
           <LivroDetalhe
             book={livroMes}
             onClose={() => setLivroMes(null)}
+            onAdicionar={handleAdicionarLivro}
           />
         </div>
 
@@ -98,6 +126,7 @@ export default function BibliotecaDoGato() {
           <LivroDetalhe
             book={livroRecomendado}
             onClose={() => setLivroRecomendado(null)}
+            onAdicionar={handleAdicionarLivro}
           />
           <button type="button" className={styles.botao}>
             Ver todos os livros

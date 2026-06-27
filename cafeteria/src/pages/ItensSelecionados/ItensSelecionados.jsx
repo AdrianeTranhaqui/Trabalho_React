@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { SelecaoContext } from '../../context/SelecaoContext';
+
 import styles from './ItensSelecionados.module.css';
 import folhaEsquerdaImg from '../../assets/icons/folhaesquerda2.png';
 import folhaDireitaImg from '../../assets/icons/folhadireita2.png';
@@ -7,9 +9,9 @@ import livroAbertoImg from '../../assets/icons/livro-aberto.png';
 
 export default function ItensSelecionados() {
   const [itensAgrupados, setItensAgrupados] = useState([]);
+  const { itensSalvos, removerItemDaSelecao } = useContext(SelecaoContext);
 
   useEffect(() => {
-    const itensSalvos = JSON.parse(localStorage.getItem('itensSelecionados') || '[]');
     const agrupado = {};
 
     itensSalvos.forEach((item) => {
@@ -31,21 +33,10 @@ export default function ItensSelecionados() {
     });
 
     setItensAgrupados(Object.values(agrupado));
-  }, []);
+  }, [itensSalvos]);
 
   function removerItem(chaveUnica) {
-    const novaListaAgrupada = itensAgrupados.filter(item => item.chaveUnica !== chaveUnica);
-    setItensAgrupados(novaListaAgrupada);
-
-    const listaOriginalReconstruida = [];
-    novaListaAgrupada.forEach((item) => {
-      const { tipo, quantidade, chaveUnica, ...dadosOriginais } = item;
-      for (let i = 0; i < quantidade; i++) {
-        listaOriginalReconstruida.push(dadosOriginais);
-      }
-    });
-
-    localStorage.setItem('itensSelecionados', JSON.stringify(listaOriginalReconstruida));
+    removerItemDaSelecao(chaveUnica);
   }
 
   const listaComidas = itensAgrupados.filter(item => item.tipo === 'comida');
