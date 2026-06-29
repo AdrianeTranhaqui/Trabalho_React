@@ -18,3 +18,14 @@
   max-height: 300px;
   overflow-y: auto;
 }
+
+.mensagemBot {
+  background-color: var(--creme-escuro);
+  color: var(--texto);
+  padding: 0.5rem 0.75rem;
+  border-radius: 0 var(--radius-md) var(--radius-md) var(--radius-md);
+  font-size: 0.85rem;
+  max-width: 85%;
+  align-self: flex-start;
+  line-height: 1.4;
+}

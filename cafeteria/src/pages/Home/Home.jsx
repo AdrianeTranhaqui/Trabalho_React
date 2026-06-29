@@ -108,7 +108,6 @@ export default function Home() {
                 </ul>
               </div>
             )}
-            
           </div>
 
           <div 
@@ -221,12 +220,12 @@ export default function Home() {
             />
         
             <div className={styles.comentarioConteudo}>
-            <p className={styles.textoComentario}>
-              "{avaliacoes[comentarioAtual].comentario}"
-            </p>
-            <h4 className={styles.nomeCliente}>
-              {avaliacoes[comentarioAtual].nome}
-            </h4>
+              <p className={styles.textoComentario}>
+                "{avaliacoes[comentarioAtual].comentario}"
+              </p>
+              <h4 className={styles.nomeCliente}>
+                {avaliacoes[comentarioAtual].nome}
+              </h4>
             </div>
 
             <button className={styles.btnProximo} onClick={proximaAvaliacao}>

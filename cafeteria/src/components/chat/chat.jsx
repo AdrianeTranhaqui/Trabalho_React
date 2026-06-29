@@ -2,8 +2,7 @@ import { useState } from 'react';
 import styles from './Chat.module.css';
 import { MessageCircle, X, Send } from 'lucide-react';
 
-// ⚠️ Quando o backend estiver pronto, substitui essa URL
-const BACKEND_URL = 'http://localhost:8080/chat';
+const BACKEND_URL = 'http://localhost:8080/api/chat';
 
 export default function Chat() {
   const [aberto, setAberto] = useState(false);
@@ -17,31 +16,34 @@ export default function Chat() {
   async function enviarMensagem() {
     if (!input.trim()) return;
 
-    // Adiciona a mensagem do usuário na tela
     const novaMensagem = { tipo: 'usuario', texto: input };
     setMensagens(prev => [...prev, novaMensagem]);
+    const perguntaEnviada = input;
     setInput('');
     setCarregando(true);
 
     try {
-      // POST para o backend Java
       const resposta = await fetch(BACKEND_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ pergunta: input })
+        body: JSON.stringify({ pergunta: perguntaEnviada })
       });
 
       const dados = await resposta.json();
 
+      if (!resposta.ok) {
+        throw new Error(dados.mensagem || 'Erro ao processar sua pergunta.');
+      }
+
       setMensagens(prev => [...prev, {
         tipo: 'bot',
-        texto: dados.resposta // ajusta o campo conforme o JSON que o backend devolver
+        texto: dados.resposta
       }]);
 
     } catch (erro) {
       setMensagens(prev => [...prev, {
         tipo: 'bot',
-        texto: 'Ops! Não consegui me conectar. Tente novamente mais tarde. 🐱'
+        texto: erro.message || 'Ops! Não consegui me conectar. Tente novamente mais tarde. 🐱'
       }]);
     } finally {
       setCarregando(false);
