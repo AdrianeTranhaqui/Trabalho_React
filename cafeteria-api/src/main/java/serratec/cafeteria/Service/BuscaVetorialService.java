@@ -38,7 +38,7 @@ public class BuscaVetorialService {
 
             log.info("Documento encontrado: '{}' (similaridade: {:.4f})", titulo, similaridade);
 
-            if (similaridade > 0.3) {
+            if (similaridade > 0.1) {
                 contextos.add(titulo + ": " + conteudo);
             }
         }
