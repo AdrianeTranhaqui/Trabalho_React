@@ -34,12 +34,11 @@ O Book & Brew é um espaço (fictício) que une cafeteria, livraria e um cantinh
 
 ### <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" height="20" alt="Pgvector Logo"/> Banco Vetorial (pgvector)
 - **22 documentos indexados** — cardápio (15 itens), regras dos gatos, ajuda com o sistema, história e valores
-- **Embeddings gerados localmente** via Ollama (nomic-embed-text, 768 dimensões)
+- **Embeddings gerados via Gemini** (gemini-embedding-001, 768 dimensões)
 - **Busca semântica** — encontra os documentos mais relevantes para cada pergunta
 
 ### <img src="https://img.shields.io/badge/-_?style=social&logo=n8n&logoColor=983C57" height="20" alt="n8n logo"/> Automação (n8n)
-- **Workflow de chatbot** — webhook recebe pergunta + contexto, usa LLM local (Ollama) para gerar respostas
-- **100% gratuito** — sem custos de API, tudo roda localmente
+- **Workflow de chatbot** — webhook recebe pergunta + contexto, usa Gemini 2.5 Flash para gerar respostas
 
 ## 💻 Tecnologias Utilizadas
 
@@ -48,8 +47,8 @@ O Book & Brew é um espaço (fictício) que une cafeteria, livraria e um cantinh
 | Frontend | [React](https://react.dev/), [Vite](https://vite.dev/), [React Router DOM](https://reactrouter.com/), CSS Modules |
 | Backend | [Java 17](https://www.oracle.com/java/), [Spring Boot 4.1.0](https://spring.io/projects/spring-boot), [Spring WebFlux](https://docs.spring.io/spring-framework/reference/web/webflux.html) |
 | Banco Vetorial | [PostgreSQL](https://www.postgresql.org/) + [pgvector](https://github.com/pgvector/pgvector) |
-| Embeddings | [Ollama](https://ollama.com/) (nomic-embed-text) |
-| LLM | [Ollama](https://ollama.com/) (qwen2.5:1.5b) |
+| Embeddings | [Gemini API](https://ai.google.dev/) (gemini-embedding-001) |
+| LLM | [Gemini API](https://ai.google.dev/) (gemini-2.5-flash) |
 | Automação | [n8n](https://n8n.io/) (desktop) |
 | Integrações | [Google Books API](https://developers.google.com/books), [MockAPI](https://mockapi.io/) |
 
@@ -117,7 +116,7 @@ Trabalho_React/
         │   │   └── DocumentoRepository.java # Query vetorial (cosine distance)
         │   └── Service/
         │       ├── N8nService.java          # Integração com n8n + busca vetorial
-        │       ├── EmbeddingService.java    # Gera embeddings via Ollama
+        │       ├── EmbeddingService.java    # Gera embeddings via Gemini API
         │       └── BuscaVetorialService.java# Busca semântica no pgvector
         └── resources/
             ├── application.properties
@@ -136,7 +135,6 @@ Trabalho_React/
 | Node.js | 18+ | https://nodejs.org/ |
 | PostgreSQL | 14+ | https://www.postgresql.org/download/ |
 | pgvector | 0.7+ | https://github.com/pgvector/pgvector/releases |
-| Ollama | Qualquer | https://ollama.com/download |
 | n8n Desktop | Qualquer | https://n8n.io/download |
 
 ### 1. Configurar o Banco de Dados
@@ -149,14 +147,7 @@ CREATE DATABASE cafeteria;
 CREATE EXTENSION vector;
 ```
 
-### 2. Baixar os modelos do Ollama
-
-```bash
-ollama pull nomic-embed-text      # embeddings (768 dimensões)
-ollama pull qwen2.5:1.5b          # LLM para respostas (~1GB)
-```
-
-### 3. Configurar o Backend
+### 2. Configurar o Backend
 
 ```bash
 cd cafeteria-api
@@ -166,6 +157,11 @@ Edite `src/main/resources/application.properties` e coloque a senha do seu Postg
 
 ```properties
 spring.datasource.password=SUA_SENHA_AQUI
+```
+Coloque a chave da API:
+
+```properties
+gemini.api-key=SUA_KEY_AQUI
 ```
 
 Inicie o backend:
@@ -178,9 +174,9 @@ Na primeira execução, o app vai:
 - Conectar no PostgreSQL
 - Criar a tabela `documentos`
 - Inserir os 22 documentos do seed
-- Gerar os embeddings via Ollama (leva ~30 segundos)
+- Gerar os embeddings via Gemini API (leva ~30 segundos)
 
-### 4. Configurar o Frontend
+### 3. Configurar o Frontend
 
 Em outro terminal:
 
@@ -192,14 +188,14 @@ npm run dev
 
 Abra http://localhost:5173 no navegador.
 
-### 5. Configurar o n8n
+### 4. Configurar o n8n
 
 1. Abra o n8n Desktop
 2. Vá em **Workflows** → **Import from File**
 3. Selecione o arquivo `cafeteria-api/n8n-workflow.json`
 4. Clique em **Ativar** no workflow
 
-### 6. Pronto para usar o Chatbot
+### 5. Pronto para usar o Chatbot
 
 Clique no ícone de chat (canto inferior direito) e faça perguntas como:
 - "Tem opção vegana?"
@@ -214,22 +210,22 @@ Clique no ícone de chat (canto inferior direito) e faça perguntas como:
 │  React Chat  │ ──────────────────────▶ │  Spring Boot API │
 │  (port 5173) │ ◀────────────────────── │  (port 8080)     │
 └──────────────┘    { resposta }         └────────┬─────────┘
-                                                  │
-                                    ┌─────────────┼─────────────┐
-                                    │             │             │
-                                    ▼             ▼             ▼
-                              ┌──────────┐  ┌──────────┐  ┌──────────┐
-                              │ Ollama   │  │ pgvector │  │   n8n    │
-                              │embeddings│  │  busca   │  │ webhook  │
-                              │(768 dim) │  │ semântica│  │(port5678)│
-                              └──────────┘  └──────────┘  └────┬─────┘
-                                                               │
-                                                               ▼
-                                                         ┌──────────┐
-                                                         │ Ollama   │
-                                                         │   LLM    │
-                                                         │(qwen2.5) │
-                                                         └──────────┘
+                                                   │
+                                     ┌─────────────┼─────────────┐
+                                     │             │             │
+                                     ▼             ▼             ▼
+                               ┌──────────┐  ┌──────────┐  ┌──────────┐
+                               │  Gemini  │  │ pgvector │  │   n8n    │
+                               │   API    │  │  busca   │  │ webhook  │
+                               │embeddings│  │ semântica│  │(port5678)│
+                               └──────────┘  └──────────┘  └────┬─────┘
+                                                                │
+                                                                ▼
+                                                          ┌──────────┐
+                                                          │  Gemini  │
+                                                          │   LLM    │
+                                                          │ (2.5flash│
+                                                          └──────────┘
 ```
 
 ## 👩‍💻 Responsabilidades de cada integrante no projeto original
