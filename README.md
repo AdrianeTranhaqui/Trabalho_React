@@ -152,7 +152,7 @@ CREATE EXTENSION vector;
 ### 2. Baixar os modelos do Ollama
 
 ```bash
-ollama pull nomic-embed-text    # embeddings (768 dimensões)
+ollama pull nomic-embed-text      # embeddings (768 dimensões)
 ollama pull qwen2.5:1.5b          # LLM para respostas (~1GB)
 ```
 
