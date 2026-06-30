@@ -28,7 +28,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "http://localhost:11434/api/chat",
+        "url": "http://127.0.0.1:11434/api/chat",
         "sendBody": true,
         "specifyBody": "json",
         "jsonBody": "={\n  \"model\": \"qwen2.5:1.5b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": {{ JSON.stringify($json.systemPrompt) }}\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {{ JSON.stringify($json.pergunta) }}\n    }\n  ],\n  \"stream\": false\n}",
