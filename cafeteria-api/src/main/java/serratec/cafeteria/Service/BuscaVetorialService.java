@@ -25,7 +25,7 @@ public class BuscaVetorialService {
     public List<String> buscarContexto(String pergunta, int topN) {
         log.info("Buscando contexto para: {}", pergunta);
 
-        float[] embeddingPergunta = embeddingService.gerarEmbedding(pergunta);
+        float[] embeddingPergunta = embeddingService.gerarEmbedding(pergunta, "RETRIEVAL_QUERY");
         String vectorString = vetorParaString(embeddingPergunta);
 
         List<Object[]> resultados = documentoRepository.buscarPorSimilaridade(vectorString, topN);
@@ -34,9 +34,9 @@ public class BuscaVetorialService {
         for (Object[] row : resultados) {
             String titulo = (String) row[1];
             String conteudo = (String) row[2];
-            Double similaridade = ((Number) row[3]).doubleValue();
+            Double similaridade = ((Number) row[4]).doubleValue();
 
-            log.info("Documento encontrado: '{}' (similaridade: {:.4f})", titulo, similaridade);
+            log.info("Documento encontrado: '{}' (similaridade: {})", titulo, similaridade);
 
             if (similaridade > 0.1) {
                 contextos.add(titulo + ": " + conteudo);

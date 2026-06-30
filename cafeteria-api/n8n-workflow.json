@@ -8,49 +8,41 @@
         "responseMode": "responseNode",
         "options": {}
       },
-      "id": "webhook-recebimento",
+      "id": "0e379980-71b5-4a5c-9236-966a22656849",
       "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
-      "position": [240, 300],
+      "position": [
+        0,
+        0
+      ],
       "webhookId": "pergunta"
     },
     {
       "parameters": {
         "jsCode": "const pergunta = $input.first().json.body.pergunta;\nconst contextos = $input.first().json.body.contexto || [];\n\nlet contextoFormatado = '';\nif (contextos.length > 0) {\n  contextoFormatado = '\\n\\n--- CONTEXTO DO BOOK & BREW ---\\n' +\n    contextos.map((c, i) => `[${i + 1}] ${c}`).join('\\n') +\n    '\\n--- FIM DO CONTEXTO ---';\n}\n\nconst systemPrompt = `Você é o assistente virtual do Book & Brew, uma cafeteria e livraria pet-friendly.\\n\\nRegras:\\n- Seja simpático, acolhedor e use emojis com moderação (🐾☕📚)\\n- Responda SOMENTE com base no contexto fornecido abaixo\\n- Se a pergunta não estiver no contexto, diga que não tem essa informação e sugira chamar o garçom\\n- Nunca invente preços ou informações que não estejam no contexto\\n- Responda em português brasileiro\\n- Seja conciso (máximo 3 parágrafos)${contextoFormatado}`;\n\nreturn [{\n  json: {\n    pergunta: pergunta,\n    systemPrompt: systemPrompt\n  }\n}];"
       },
-      "id": "formatar-prompt",
+      "id": "00981b18-382d-4307-839f-d7874eec9148",
       "name": "Formatar Prompt",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [480, 300]
+      "position": [
+        240,
+        0
+      ]
     },
     {
       "parameters": {
-        "method": "POST",
-        "url": "http://127.0.0.1:11434/api/chat",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={\n  \"model\": \"qwen2.5:1.5b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": {{ JSON.stringify($json.systemPrompt) }}\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {{ JSON.stringify($json.pergunta) }}\n    }\n  ],\n  \"stream\": false\n}",
-        "options": {
-          "timeout": 120000
-        }
+        "jsCode": "const resposta = $input.first().json.candidates[0].content.parts[0].text;\n\nreturn [{\n  json: {\n    resposta: resposta\n  }\n}];"
       },
-      "id": "chamar-ollama",
-      "name": "Chamar Ollama",
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [720, 300]
-    },
-    {
-      "parameters": {
-        "jsCode": "const resposta = $input.first().json.message.content;\n\nreturn [{\n  json: {\n    resposta: resposta\n  }\n}];"
-      },
-      "id": "extrair-resposta",
+      "id": "690ffa76-3939-4ade-ba5b-824531c5be67",
       "name": "Extrair Resposta",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [960, 300]
+      "position": [
+        720,
+        0
+      ]
     },
     {
       "parameters": {
@@ -60,13 +52,46 @@
           "responseCode": 200
         }
       },
-      "id": "responder-webhook",
+      "id": "a10f04fd-11c8-45f6-af8b-041420a13325",
       "name": "Responder Webhook",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1200, 300]
+      "position": [
+        960,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "key",
+              "value": ""
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ {\n  contents: [\n    {\n      parts: [\n        { text: $json.systemPrompt + \"\\n\\nPergunta: \" + $json.pergunta }\n      ]\n    }\n  ]\n} }}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "d7562c27-55a0-47b2-a981-27c53b69d111",
+      "name": "Chamar Gemini",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        480,
+        0
+      ]
     }
   ],
+  "pinData": {},
   "connections": {
     "Webhook": {
       "main": [
@@ -83,18 +108,7 @@
       "main": [
         [
           {
-            "node": "Chamar Ollama",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Chamar Ollama": {
-      "main": [
-        [
-          {
-            "node": "Extrair Resposta",
+            "node": "Chamar Gemini",
             "type": "main",
             "index": 0
           }
@@ -111,14 +125,37 @@
           }
         ]
       ]
+    },
+    "Chamar Gemini": {
+      "main": [
+        [
+          {
+            "node": "Extrair Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
+  "active": true,
   "settings": {
-    "executionOrder": "v1"
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
   },
-  "staticData": null,
+  "versionId": "b52b94a4-e20b-4e44-b99a-969e5744c1d5",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "50fc7a0334024757dd0542b40dccf0ed0d9ab3aa39e888cccda50961b56b9ef3"
+  },
+  "nodeGroups": [],
+  "id": "QPBvoSxfQhxuLoz5",
   "tags": [
     {
+      "updatedAt": "2026-06-30T17:40:22.412Z",
+      "createdAt": "2026-06-30T17:40:22.412Z",
+      "id": "KoXqFGLFsxfhLhCE",
       "name": "cafeteria"
     }
   ]
