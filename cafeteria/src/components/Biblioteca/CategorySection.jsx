@@ -11,7 +11,7 @@ function CategorySection({ label, subject, onSelectBook, maxResults = 8 }) {
   return (
     <section>
       <h2>{label}</h2>
-      <div className="book-grid">
+      <div className={styles.bookGrid}>
         {books.map(book => {
           const info = book.volumeInfo;
           return (
