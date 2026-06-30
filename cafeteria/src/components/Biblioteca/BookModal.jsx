@@ -7,8 +7,8 @@ function BookModal({ book, onClose }) {
   const sinopse = info.description?.replace(/<[^>]*>/g, '') || 'Sinopse não disponível.';
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content" onClick={e => e.stopPropagation()}>
+    <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.modalContent} onClick={e => e.stopPropagation()}>
         <img src={info.imageLinks?.thumbnail} alt={info.title} />
         <h2>{info.title}</h2>
         <p>{info.authors?.join(', ')}</p>

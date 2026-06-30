@@ -1,0 +1,125 @@
+{
+  "name": "Book & Brew Chatbot",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "pergunta",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-recebimento",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "pergunta"
+    },
+    {
+      "parameters": {
+        "jsCode": "const pergunta = $input.first().json.body.pergunta;\nconst contextos = $input.first().json.body.contexto || [];\n\nlet contextoFormatado = '';\nif (contextos.length > 0) {\n  contextoFormatado = '\\n\\n--- CONTEXTO DO BOOK & BREW ---\\n' +\n    contextos.map((c, i) => `[${i + 1}] ${c}`).join('\\n') +\n    '\\n--- FIM DO CONTEXTO ---';\n}\n\nconst systemPrompt = `Você é o assistente virtual do Book & Brew, uma cafeteria e livraria pet-friendly.\\n\\nRegras:\\n- Seja simpático, acolhedor e use emojis com moderação (🐾☕📚)\\n- Responda SOMENTE com base no contexto fornecido abaixo\\n- Se a pergunta não estiver no contexto, diga que não tem essa informação e sugira chamar o garçom\\n- Nunca invente preços ou informações que não estejam no contexto\\n- Responda em português brasileiro\\n- Seja conciso (máximo 3 parágrafos)${contextoFormatado}`;\n\nreturn [{\n  json: {\n    pergunta: pergunta,\n    systemPrompt: systemPrompt\n  }\n}];"
+      },
+      "id": "formatar-prompt",
+      "name": "Formatar Prompt",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [480, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:11434/api/chat",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"qwen2.5:1.5b\",\n  \"messages\": [\n    {\n      \"role\": \"system\",\n      \"content\": {{ JSON.stringify($json.systemPrompt) }}\n    },\n    {\n      \"role\": \"user\",\n      \"content\": {{ JSON.stringify($json.pergunta) }}\n    }\n  ],\n  \"stream\": false\n}",
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "chamar-ollama",
+      "name": "Chamar Ollama",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [720, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "const resposta = $input.first().json.message.content;\n\nreturn [{\n  json: {\n    resposta: resposta\n  }\n}];"
+      },
+      "id": "extrair-resposta",
+      "name": "Extrair Resposta",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [960, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ $json }}",
+        "options": {
+          "responseCode": 200
+        }
+      },
+      "id": "responder-webhook",
+      "name": "Responder Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1200, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Formatar Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formatar Prompt": {
+      "main": [
+        [
+          {
+            "node": "Chamar Ollama",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chamar Ollama": {
+      "main": [
+        [
+          {
+            "node": "Extrair Resposta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extrair Resposta": {
+      "main": [
+        [
+          {
+            "node": "Responder Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "name": "cafeteria"
+    }
+  ]
+}

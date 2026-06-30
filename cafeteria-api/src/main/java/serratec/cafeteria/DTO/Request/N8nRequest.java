@@ -1,4 +1,6 @@
 package serratec.cafeteria.DTO.Request;
 
-public record N8nRequest(String pergunta) {
+import java.util.List;
+
+public record N8nRequest(String pergunta, List<String> contexto) {
 }
